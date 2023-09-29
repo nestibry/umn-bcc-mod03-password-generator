@@ -46,7 +46,7 @@ function generatePassword() {
     passwordLength *= 1; //converts to a number
     console.log(`Converted to: ${passwordLength}  type: ${typeof passwordLength}`);
     if(!passwordLength){
-        console.log("user did not enter a number")
+        console.log("User did not enter a number. Aborting Password Generator...")
         return null;
     }
 
