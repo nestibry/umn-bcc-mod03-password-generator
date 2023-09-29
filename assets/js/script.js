@@ -24,6 +24,7 @@ function lengthPrompt() {
             var confirmAbort = confirm("Exit Password Generator?");
             if (confirmAbort){
                 // Aborts to default screen with "Your Secure Password"
+                console.log("User selected to abort Password Generator...")
                 return null;
             }
             numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
@@ -36,6 +37,7 @@ function lengthPrompt() {
     numChar *= 1;   // converts to a number
     console.log(`Converted to: ${numChar}  type: ${typeof numChar}`);
     if(!numChar){
+        // Aborts to default screen with "Your Secure Password"
         console.log("User did not enter a number. Aborting Password Generator...")
         return null;
     }
