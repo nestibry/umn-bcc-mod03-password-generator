@@ -40,6 +40,8 @@ function lengthPrompt() {
         // Aborts to default screen with "Your Secure Password"
         console.log("User did not enter a number. Aborting Password Generator...")
         return null;
+    } else if (numChar < 8 || numChar) {
+        
     }
 
     return numChar;
