@@ -1,12 +1,32 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+
+
 /* ------------------------------------------------------------------- */
+
+// Global variables
+var numChar;  // Password Length
+
+
+
+function userPrompts() {
+    numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
+    if (numChar == null){
+        numChar = "numChar is null"
+    }
+    console.log(numChar);
+
+}
+
+
 
 
 function generatePassword() {
 
-  return "Bryan123";
+    userPrompts();
+
+    return numChar;
 }
 
 
@@ -15,6 +35,8 @@ function generatePassword() {
 
 
 /* ------------------------------------------------------------------- */
+
+
 
 // Write password to the #password input
 function writePassword() {
