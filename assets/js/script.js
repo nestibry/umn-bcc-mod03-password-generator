@@ -7,7 +7,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Global variables
 var newPassword;
-var passwordLength;  // Password Length
+var passwordLength;
 
 
 
@@ -33,7 +33,7 @@ function lengthPrompt() {
     }
 
     // Case: Check that the value is a number
-    numChar *= 1; //converts to a number
+    numChar *= 1;   // converts to a number
     console.log(`Converted to: ${numChar}  type: ${typeof numChar}`);
     if(!numChar){
         console.log("User did not enter a number. Aborting Password Generator...")
@@ -46,36 +46,7 @@ function lengthPrompt() {
 
 function userPrompts() {
 
-
-    passwordLength = lengthPrompt();
-
-    // Choose Password Length
-    // passwordLength = lengthPrompt();
-
-    // // Case: User clicks cancel
-    // if (passwordLength === null){
-    //     do {
-    //         var confirmAbort = confirm("Exit Password Generator?");
-    //         if (confirmAbort){
-    //             // Aborts to default screen with "Your Secure Password"
-    //             return null;
-    //         }
-    //         passwordLength = lengthPrompt();
-    //     }
-    //     while(passwordLength === null);
-    // }
-
-    // // Case: Check that the value is a number
-    // passwordLength *= 1; //converts to a number
-    // console.log(`Converted to: ${passwordLength}  type: ${typeof passwordLength}`);
-    // if(!passwordLength){
-    //     console.log("User did not enter a number. Aborting Password Generator...")
-    //     return null;
-    // }
-
-
-    // return passwordLength;
-
+    newPassword = lengthPrompt();
 
 }
 
@@ -85,34 +56,7 @@ function generatePassword() {
 
     userPrompts();
 
-
-
-    // // Choose Password Length
-    // passwordLength = lengthPrompt();
-
-    // // Case: User clicks cancel
-    // if (passwordLength === null){
-    //     do {
-    //         var confirmAbort = confirm("Exit Password Generator?");
-    //         if (confirmAbort){
-    //             // Aborts to default screen with "Your Secure Password"
-    //             return null;
-    //         }
-    //         passwordLength = lengthPrompt();
-    //     }
-    //     while(passwordLength === null);
-    // }
-
-    // // Case: Check that the value is a number
-    // passwordLength *= 1; //converts to a number
-    // console.log(`Converted to: ${passwordLength}  type: ${typeof passwordLength}`);
-    // if(!passwordLength){
-    //     console.log("User did not enter a number. Aborting Password Generator...")
-    //     return null;
-    // }
-
-
-    return passwordLength;
+    return newPassword;
 }
 
 
