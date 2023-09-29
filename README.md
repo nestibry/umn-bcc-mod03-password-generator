@@ -6,7 +6,8 @@
 Refactoring JavaScript codebase to create an application that enables users to generate random passwords based on criteria they have selected. 
 
 - This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. 
-- The password can include [special characters](https://www.owasp.org/index.php/Password_special_characters).
+- Users can choose a length of at least 8 characters and no more than 128 characters.
+- Users can confirm whether or not to include lowercase, uppercase, numeric, and/or [special characters](https://www.owasp.org/index.php/Password_special_characters).
 
 
 ## Installation
