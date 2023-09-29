@@ -13,7 +13,8 @@ var numChar;  // Password Length
 function userPrompts() {
     numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
     if (numChar == null){
-        numChar = "numChar is null"
+        numChar = "numChar is null";
+        return;
     }
     console.log(numChar);
 
