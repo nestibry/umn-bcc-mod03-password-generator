@@ -21,7 +21,6 @@ function generatePassword() {
 
     // Choose Password Length
     numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
-    numChar *= 1; //convert to a number
     console.log(`User chose password length: ${numChar}  type: ${typeof numChar}`);
 
     // Case: User clicks cancel
@@ -38,7 +37,13 @@ function generatePassword() {
         while(numChar === null);
     }
 
-    // Check 
+    // Case: Check that the value is a number
+    numChar *= 1; //converts to a number
+    console.log(`Converted to: ${numChar}  type: ${typeof numChar}`);
+    if(!numChar){
+        console.log("user did not enter a number")
+        return null;
+    }
 
 
     return numChar;
