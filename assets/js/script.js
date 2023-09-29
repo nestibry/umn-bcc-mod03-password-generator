@@ -15,8 +15,10 @@ var passwordLength;  // Password Length
 // }
 
 function lengthPrompt() {
-    
+    var numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
+    return numChar;
 }
+
 
 
 
