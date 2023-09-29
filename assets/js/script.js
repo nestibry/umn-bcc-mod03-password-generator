@@ -12,30 +12,26 @@ var numChar;  // Password Length
 
 
 function userPrompts() {
-    numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
 
-    console.log(numChar + " " + typeof numChar);
-    
+    // Choose Password Length
+    numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
+    console.log(`User chose password length: ${numChar}`);
+
     // Case: User clicks cancel
     if (numChar === null){
         do {
             var confirmAbort = confirm("Exit Password Generator?");
             if (confirmAbort){
+                // Aborts to default screen with "Your Secure Password"
                 return;
             }
             numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
+            console.log(`User chose password length: ${numChar}`);
         }
         while(numChar === null);
     }
 
 
-
-    // if (numChar == null){
-    //     numChar = "numChar is null";
-    //     return;
-    // }
-    //do
-    console.log(numChar);
 
 }
 
