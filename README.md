@@ -9,6 +9,16 @@ Refactoring JavaScript codebase to create an application that enables users to g
 - Users can choose a length of at least 8 characters and no more than 128 characters.
 - Users can confirm whether or not to include lowercase, uppercase, numeric, and/or [special characters](https://www.owasp.org/index.php/Password_special_characters).
 
+## Tasks
+
+- [ ] Prompt user ( N-characters, lowercase, uppercase, numberic, special character, confirm selection )
+- [ ] Generate password from criteria
+    - [ ] Generate random number for each type of character
+    - [ ] Generate sub-array of random elements for each type of character
+    - [ ] Randomly distribute the large array
+    - [ ] Combine array into one string
+- [ ] Display password
+
 
 ## Installation
 
