@@ -16,8 +16,10 @@ var passwordLength;  // Password Length
 
 function lengthPrompt() {
     var numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
+    console.log(`Password Length: ${numChar}  Type: ${typeof numChar}`);
     return numChar;
 }
+
 
 
 
@@ -25,8 +27,7 @@ function lengthPrompt() {
 function generatePassword() {
 
     // Choose Password Length
-    passwordLength = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
-    console.log(`User chose password length: ${passwordLength}  type: ${typeof passwordLength}`);
+    passwordLength = lengthPrompt();
 
     // Case: User clicks cancel
     if (passwordLength === null){
@@ -36,8 +37,7 @@ function generatePassword() {
                 // Aborts to default screen with "Your Secure Password"
                 return null;
             }
-            passwordLength = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
-            console.log(`User chose password length: ${passwordLength}  type: ${typeof passwordLength}`);
+            passwordLength = lengthPrompt();
         }
         while(passwordLength === null);
     }
