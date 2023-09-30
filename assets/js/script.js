@@ -129,6 +129,13 @@ function shuffle(array) {
     return array;
 }
 
+function generateRandomNumber(min, max) { 
+    
+    return Math.floor( Math.random() * (max - min + 1) + min);
+
+}
+
+
 
 function generatePassword() {
 
@@ -140,13 +147,13 @@ function generatePassword() {
 
 
 
-    // console.log(arrChrs.length);
-    console.log(`Lowercase: ${arrLowercase}  Type: ${typeof arrLowercase}  Length: ${arrLowercase.length}`);
-    console.log(`Lowercase: ${arrUppercase}  Type: ${typeof arrUppercase}  Length: ${arrUppercase.length}`);
-    console.log(`Lowercase: ${arrNumbers}  Type: ${typeof arrNumbers}  Length: ${arrNumbers.length}`);
-    console.log(`Lowercase: ${arrSpecial}  Type: ${typeof arrSpecial}  Length: ${arrSpecial.length}`);
+    // // Debug: List available characters
+    // console.log(`Lowercase: ${arrLowercase}  Type: ${typeof arrLowercase}  Length: ${arrLowercase.length}`);
+    // console.log(`Lowercase: ${arrUppercase}  Type: ${typeof arrUppercase}  Length: ${arrUppercase.length}`);
+    // console.log(`Lowercase: ${arrNumbers}  Type: ${typeof arrNumbers}  Length: ${arrNumbers.length}`);
+    // console.log(`Lowercase: ${arrSpecial}  Type: ${typeof arrSpecial}  Length: ${arrSpecial.length}`);
 
-    var tempPasswordArray = shuffle(newPasswordArray)
+    var tempPasswordArray = shuffle(newPasswordArray);
 
     newPassword = tempPasswordArray.join("");
     console.log(`New Password: ${newPassword}  Type: ${typeof newPassword}`);
