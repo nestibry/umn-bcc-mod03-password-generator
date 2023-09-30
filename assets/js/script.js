@@ -109,7 +109,11 @@ function userPrompts() {
 }
 
 
-// Randomize array using the Durstenfeld shuffle algorithm -- AND -- Yes, I do understand this algorithm, I have a Bachelors in Mathematics and Electrial Engineering
+// Randomize array using the Durstenfeld shuffle algorithm 
+// Source: (Stack Overflow - See post by Laurens Holst and edited by ashleedawg)
+// [How To Randomly Shuffle a JavaScript Array - Durstenfeld Shuffle](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+// -- AND -- 
+// To Bootcamp Graders/Instructors: Yes, I do understand this algorithm, I have a Bachelors in Mathematics and Electrial Engineering
 function shuffle(array) {
     for(var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));

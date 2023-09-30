@@ -37,6 +37,8 @@ Deployed Site:
 ## Credits
 [List of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
 
+[How To Randomly Shuffle a JavaScript Array - Durstenfeld Shuffle](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array) -  (Source Stack Overflow - See post by Laurens Holst and edited by ashleedawg)
+
 © 2023 edX Boot Camps LLC.
 
 ## License
