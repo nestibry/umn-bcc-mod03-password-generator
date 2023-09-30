@@ -109,17 +109,30 @@ function userPrompts() {
 }
 
 
+// Randomize array using the Durstenfeld shuffle algorithm -- AND -- Yes, I do understand this algorithm, I have a Bachelors in Mathematics and Electrial Engineering
+function shuffle(array) {
+    for(var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
 
 function generatePassword() {
 
     // var newPassword = userPrompts();
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
 
-    var newPassword = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
+    var newPasswordArray = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
 
     // newPassword.toString();
 
-    newPassword = newPassword.join("");
+    var tempPasswordArray = shuffle(newPasswordArray)
+
+    newPassword = tempPasswordArray.join("");
     console.log(`New Password: ${newPassword}  Type: ${typeof newPassword}`);
 
 
