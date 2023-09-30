@@ -145,8 +145,6 @@ function generatePassword() {
     // var newPasswordArray = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
     // var newPasswordArray = ['a', 'b', 'c', 'D', 'E', 'F', '1', '2', '3', '%'];
 
-
-
     // // Debug: List available characters
     // console.log(`Lowercase: ${arrLowercase}  Type: ${typeof arrLowercase}  Length: ${arrLowercase.length}`);
     // console.log(`Lowercase: ${arrUppercase}  Type: ${typeof arrUppercase}  Length: ${arrUppercase.length}`);
@@ -158,18 +156,35 @@ function generatePassword() {
     // newPassword = tempPasswordArray.join("");
     // console.log(`New Password: ${newPassword}  Type: ${typeof newPassword}`);
 
-    // var countLowercase = 0;
-    // var countUppercase = 0;
-    // var countNumbers = 0;
-    // var countSpecial = 0;
-
-    // var passwordLength = 10;
-
-    // countLowercase = generateRandomNumber(1, 6);
-    // countUppercase = generateRandomNumber(1, 9);
 
     newPassword = generateRandomNumber(1,10);
 
+    var includeLowercase = true;
+    var includeUppercase = true;
+    var includeSpecChar = true;
+    var includeNumbers = true;
+
+    var countLowercase = 0;
+    var countUppercase = 0;
+    var countNumbers = 0;
+    var countSpecial = 0;
+
+    var passwordLength = 10;
+
+    var countTypes = ((includeLowercase * 1) + (includeUppercase * 1) + (includeSpecChar * 1) + (includeNumbers * 1));
+
+    var maxCount = (passwordLength - countTypes + 1);
+    countLowercase = generateRandomNumber(1, maxCount);
+    console.log(`countLowercase: ${countLowercase}  Type: ${typeof countLowercase}`);
+    console.log(`maxCount: ${maxCount}  Type: ${typeof maxCount}`);
+    countTypes--;
+    
+    var maxCount = (passwordLength - (countLowercase + countTypes + 1) + 1);
+    countUppercase = generateRandomNumber(1, maxCount);
+    console.log(`countUppercase: ${countUppercase}  Type: ${typeof countUppercase}`);
+    console.log(`maxCount: ${maxCount}  Type: ${typeof maxCount}`);
+
+    newPassword = countLowercase;
 
     return newPassword;
 }
