@@ -6,8 +6,8 @@ var generateBtn = document.querySelector("#generate");
 /* ------------------------------------------------------------------- */
 
 // Global variables
-var newPassword;
-var passwordLength;
+// var newPassword;
+// var passwordLength;
 
 
 
@@ -54,7 +54,7 @@ function lengthPrompt() {
 
 function userPrompts() {
 
-    newPassword = lengthPrompt(); 
+    var passwordLength = lengthPrompt(); 
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
 
     var includeLowercase = confirm(`Include 'lowercase' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
@@ -66,13 +66,17 @@ function userPrompts() {
     var includeSpecChar = confirm(`Include 'Special Characters' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`);
 
+    var confirmParams = confirm(`Confirm password parameters: \n   Include lowercase: ${includeLowercase} \n   Include UPPERCASE: ${includeUppercase} \n   Include Special Characters: ${includeSpecChar}`)
+    console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof includeSpecChar}`);
+
+    return passwordLength;
 }
 
 
 
 function generatePassword() {
 
-    userPrompts();
+    var newPassword = userPrompts();
 
     return newPassword;
 }
