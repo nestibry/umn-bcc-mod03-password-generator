@@ -15,7 +15,7 @@ var generateBtn = document.querySelector("#generate");
 function lengthPrompt() {
     
     // Choose number of characters for password length
-    var numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
+    var numChar = prompt(`Number of Characters: \nEnter a number between 8 and 128 (inclusively). \n    Proceed  :=  OK\n    EXIT  :=  Cancel`);
     console.log(`Password Length: ${numChar}  Type: ${typeof numChar}`);
 
     // Case: User clicks cancel --> Return to userPrompts() with null value --> User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
@@ -95,7 +95,7 @@ function userPrompts() {
     if(includeSpecChar){strParams += "Special, ";}
     // strParams += ` characters`;
 
-    var confirmParams = confirm(`Confirm password parameters: \n${strParams}\n    Yes  :=  OK\n    No  :=  Cancel`)
+    var confirmParams = confirm(`Confirm password parameters: \n${strParams}\n    Proceed  :=  OK\n    EXIT  :=  Cancel`)
     console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof includeSpecChar}`);
 
     // Case: User clicks cancel to confirm parameters prompt --> Return to default browser
