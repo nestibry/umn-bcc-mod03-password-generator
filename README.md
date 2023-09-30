@@ -11,7 +11,7 @@ Refactoring JavaScript codebase to create an application that enables users to g
 
 ## Tasks
 
-- [ ] Prompt user ( N-characters, lowercase, uppercase, numberic, special character, confirm selection )
+- [ ] Prompt user ( N-characters, lowercase, uppercase, numeric, special character, confirm selection )
 - [ ] Generate password from criteria
     - [ ] Generate random number for each type of character
     - [ ] Generate sub-array of random elements for each type of character

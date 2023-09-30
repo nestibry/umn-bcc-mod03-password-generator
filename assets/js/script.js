@@ -57,6 +57,15 @@ function userPrompts() {
     newPassword = lengthPrompt(); 
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
 
+    var includeLowercase = confirm(`Include 'lowercase' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
+    console.log(`Include lowercase: ${includeLowercase}  Type: ${typeof includeLowercase}`);
+
+    var includeUppercase = confirm(`Include 'UPPERCASE' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
+    console.log(`Include UPPERCASE: ${includeUppercase}  Type: ${typeof includeUppercase}`);
+
+    var includeSpecChar = confirm(`Include 'Special Characters' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
+    console.log(`Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`);
+
 }
 
 
