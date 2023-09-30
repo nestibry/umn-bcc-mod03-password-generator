@@ -112,8 +112,16 @@ function userPrompts() {
 
 function generatePassword() {
 
-    var newPassword = userPrompts();
+    // var newPassword = userPrompts();
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
+
+    var newPassword = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
+
+    // newPassword.toString();
+
+    newPassword = newPassword.join("");
+    console.log(`New Password: ${newPassword}  Type: ${typeof newPassword}`);
+
 
     return newPassword;
 }
