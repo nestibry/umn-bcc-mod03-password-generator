@@ -143,7 +143,7 @@ function generatePassword() {
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
 
     // var newPasswordArray = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
-    var newPasswordArray = ['a', 'b', 'c', 'D', 'E', 'F', '1', '2', '3', '%'];
+    // var newPasswordArray = ['a', 'b', 'c', 'D', 'E', 'F', '1', '2', '3', '%'];
 
 
 
@@ -153,10 +153,22 @@ function generatePassword() {
     // console.log(`Lowercase: ${arrNumbers}  Type: ${typeof arrNumbers}  Length: ${arrNumbers.length}`);
     // console.log(`Lowercase: ${arrSpecial}  Type: ${typeof arrSpecial}  Length: ${arrSpecial.length}`);
 
-    var tempPasswordArray = shuffle(newPasswordArray);
+    // var tempPasswordArray = shuffle(newPasswordArray);
 
-    newPassword = tempPasswordArray.join("");
-    console.log(`New Password: ${newPassword}  Type: ${typeof newPassword}`);
+    // newPassword = tempPasswordArray.join("");
+    // console.log(`New Password: ${newPassword}  Type: ${typeof newPassword}`);
+
+    // var countLowercase = 0;
+    // var countUppercase = 0;
+    // var countNumbers = 0;
+    // var countSpecial = 0;
+
+    // var passwordLength = 10;
+
+    // countLowercase = generateRandomNumber(1, 6);
+    // countUppercase = generateRandomNumber(1, 9);
+
+    newPassword = generateRandomNumber(1,10);
 
 
     return newPassword;
