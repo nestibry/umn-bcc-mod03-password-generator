@@ -74,12 +74,33 @@ function userPrompts() {
     var includeSpecChar = confirm(`Include 'Special Characters' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`);
 
-    var confirmParams = confirm(`Confirm password parameters: \n   Include lowercase:   ${includeLowercase} \n   Include UPPERCASE: ${includeUppercase} \n   Include Special Characters:    ${includeSpecChar}`)
+    // Case: User clicks cancel for ALL character types --> Return to default browser
+    if(!includeLowercase && !includeUppercase && !includeSpecChar) {
+        // includeLowercase = includeUppercase = includeSpecChar = true;
+        // console.log(`User selected not to include any character types. Defaulting to include ALL character types.
+        // Include lowercase: ${includeLowercase}  Type: ${typeof includeLowercase}
+        // Include UPPERCASE: ${includeUppercase}  Type: ${typeof includeUppercase}
+        // Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`)
+        
+        console.log("User selected to cancel to ALL parameters prompts. Returning to the default browser...")
+        return null;
+
+    }
+
+    // Creating and Prompting User to Confirm Password Paramaters List
+    var strParams = "";
+    strParams += `${numChar} characters --> Includes Types:  `;
+    if(includeLowercase){strParams += "lowercase, ";}
+    if(includeUppercase){strParams += "UPPERCASE, ";}
+    if(includeSpecChar){strParams += "Special, ";}
+    // strParams += ` characters`;
+
+    var confirmParams = confirm(`Confirm password parameters: \n${strParams}\n    Yes  :=  OK\n    No  :=  Cancel`)
     console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof includeSpecChar}`);
 
     // Case: User clicks cancel to confirm parameters prompt --> Return to default browser
     if (confirmParams === false) {
-        console.log("User selected to cancel to confirm parameters. Returning to the default browser...")
+        console.log("User selected to cancel to the confirm parameters prompt. Returning to the default browser...")
         return null;
     }
 
