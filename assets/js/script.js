@@ -6,10 +6,14 @@ var generateBtn = document.querySelector("#generate");
 /* ------------------------------------------------------------------- */
 
 // Global variables
-// var newPassword;
-// var passwordLength;
+var arrNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+var arrLowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var arrSpecial = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~'];
 
-
+var arrUppercase = [];
+for(var i = 0; i < arrLowercase.length; i++) {
+    arrUppercase[i] = arrLowercase[i].toUpperCase();
+}
 
 
 function lengthPrompt() {
@@ -45,6 +49,7 @@ function lengthPrompt() {
 
 function userPrompts() {
     // Important: need to re-evaluate what gets returned.
+    // Important: Add confirm if numbers are wanted
 
     var numChar = lengthPrompt(); 
 
@@ -130,9 +135,16 @@ function generatePassword() {
     // var newPassword = userPrompts();
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
 
-    var newPasswordArray = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
+    // var newPasswordArray = ["a", "b", "c", "D", "E", "F", "1", "2", "3", "%"];
+    var newPasswordArray = ['a', 'b', 'c', 'D', 'E', 'F', '1', '2', '3', '%'];
 
-    // newPassword.toString();
+
+
+    // console.log(arrChrs.length);
+    console.log(`Lowercase: ${arrLowercase}  Type: ${typeof arrLowercase}  Length: ${arrLowercase.length}`);
+    console.log(`Lowercase: ${arrUppercase}  Type: ${typeof arrUppercase}  Length: ${arrUppercase.length}`);
+    console.log(`Lowercase: ${arrNumbers}  Type: ${typeof arrNumbers}  Length: ${arrNumbers.length}`);
+    console.log(`Lowercase: ${arrSpecial}  Type: ${typeof arrSpecial}  Length: ${arrSpecial.length}`);
 
     var tempPasswordArray = shuffle(newPasswordArray)
 
