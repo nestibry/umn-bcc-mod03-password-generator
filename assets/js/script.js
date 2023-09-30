@@ -54,7 +54,8 @@ function lengthPrompt() {
 
 function userPrompts() {
 
-    newPassword = lengthPrompt();
+    newPassword = lengthPrompt(); 
+    // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
 
 }
 
