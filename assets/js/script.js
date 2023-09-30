@@ -48,7 +48,7 @@ function userPrompts() {
 
     var numChar = lengthPrompt(); 
 
-    // Case: User clicks cancel during lenghtPrompt() --> 
+    // Case: User clicks cancel during lengthPrompt() --> 
         // lengthPrompt() returns null --> 
         // Confirm Exit Password Generator --> 
         // User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
@@ -57,7 +57,7 @@ function userPrompts() {
             var confirmAbort = confirm("Exit Password Generator?");
             if (confirmAbort){
                 // Aborts to default screen with "Your Secure Password" --> returns null for the 'numChar'
-                console.log("User selected to abort Password Generator. Returning the default browser...")
+                console.log("User selected to abort Password Generator. Returning to the default browser...")
                 return null;
             }
             numChar = lengthPrompt();
@@ -74,8 +74,14 @@ function userPrompts() {
     var includeSpecChar = confirm(`Include 'Special Characters' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`);
 
-    var confirmParams = confirm(`Confirm password parameters: \n   Include lowercase: ${includeLowercase} \n   Include UPPERCASE: ${includeUppercase} \n   Include Special Characters: ${includeSpecChar}`)
+    var confirmParams = confirm(`Confirm password parameters: \n   Include lowercase:   ${includeLowercase} \n   Include UPPERCASE: ${includeUppercase} \n   Include Special Characters:    ${includeSpecChar}`)
     console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof includeSpecChar}`);
+
+    // Case: User clicks cancel to confirm parameters prompt --> Return to default browser
+    if (confirmParams === false) {
+        console.log("User selected to cancel to confirm parameters. Returning to the default browser...")
+        return null;
+    }
 
     return numChar;
     // Important: need to re-evaluate what gets returned.
