@@ -18,19 +18,24 @@ function lengthPrompt() {
     var numChar = prompt(`Password Length: Choose a length of at least 8 characters and no more than 128 characters...`);
     console.log(`Password Length: ${numChar}  Type: ${typeof numChar}`);
 
-    // Case: User clicks cancel --> User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
-    if (numChar === null){
-        do {
-            var confirmAbort = confirm("Exit Password Generator?");
-            if (confirmAbort){
-                // Aborts to default screen with "Your Secure Password" --> returns null for the 'numChar'
-                console.log("User selected to abort Password Generator...")
-                return null;
-            }
-            numChar = lengthPrompt();
-        }
-        while(numChar === null);
+    // // Case: User clicks cancel --> User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
+    // if (numChar === null){
+    //     do {
+    //         var confirmAbort = confirm("Exit Password Generator?");
+    //         if (confirmAbort){
+    //             // Aborts to default screen with "Your Secure Password" --> returns null for the 'numChar'
+    //             console.log("User selected to abort Password Generator...")
+    //             return null;
+    //         }
+    //         numChar = lengthPrompt();
+    //     }
+    //     while(numChar === null);
+    // }
+
+    if (numChar === null) {
+        return null;
     }
+
 
     // Case: Check that the value is a number AND within range [8:128] -- Re-prompt user to enter password length
     numChar *= 1;   // converts to a number
@@ -54,8 +59,23 @@ function lengthPrompt() {
 
 function userPrompts() {
 
-    var passwordLength = lengthPrompt(); 
+    var numChar = lengthPrompt(); 
     // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
+
+    // Case: User clicks cancel --> User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
+    if (numChar === null){
+        do {
+            var confirmAbort = confirm("Exit Password Generator?");
+            if (confirmAbort){
+                // Aborts to default screen with "Your Secure Password" --> returns null for the 'numChar'
+                console.log("User selected to abort Password Generator. Returning the default browser...")
+                return null;
+            }
+            numChar = lengthPrompt();
+        }
+        while(numChar === null);
+    }
+
 
     var includeLowercase = confirm(`Include 'lowercase' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include lowercase: ${includeLowercase}  Type: ${typeof includeLowercase}`);
@@ -69,7 +89,7 @@ function userPrompts() {
     var confirmParams = confirm(`Confirm password parameters: \n   Include lowercase: ${includeLowercase} \n   Include UPPERCASE: ${includeUppercase} \n   Include Special Characters: ${includeSpecChar}`)
     console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof includeSpecChar}`);
 
-    return passwordLength;
+    return numChar;
 }
 
 
