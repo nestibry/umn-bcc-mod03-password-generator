@@ -71,36 +71,29 @@ function userPrompts() {
     var includeUppercase = confirm(`Include 'UPPERCASE' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include UPPERCASE: ${includeUppercase}  Type: ${typeof includeUppercase}`);
 
-    var includeNumbers = confirm(`Include 'UPPERCASE' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
+    var includeNumbers = confirm(`Include Numbers? \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include Numbers: ${includeNumbers}  Type: ${typeof includeNumbers}`);
 
-    var includeSpecChar = confirm(`Include 'Special' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
-    console.log(`Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`);
+    var includeSpecials = confirm(`Include 'Special' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
+    console.log(`Include Special Characters: ${includeSpecials}  Type: ${typeof includeSpecials}`);
 
     // Case: User clicks cancel for ALL character types --> Return to default browser
-    if(!includeLowercase && !includeUppercase && !includeNumbers && !includeSpecChar) {
-        // includeLowercase = includeUppercase = includeSpecChar = true;
-        // console.log(`User selected not to include any character types. Defaulting to include ALL character types.
-        // Include lowercase: ${includeLowercase}  Type: ${typeof includeLowercase}
-        // Include UPPERCASE: ${includeUppercase}  Type: ${typeof includeUppercase}
-        // Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`)
-        
+    if(!includeLowercase && !includeUppercase && !includeNumbers && !includeSpecials) {
         console.log("User selected to cancel to ALL parameters prompts. Returning to the default browser...")
         return null;
-
     }
 
     // Creating and Prompting User to Confirm Password Paramaters List
     var strParams = "";
-    strParams += `${numChar} characters --> Includes Types:  `;
+    strParams += `${numChar} characters \nIncludes Types:  `;
     if(includeLowercase){strParams += `lowercase, `;}
     if(includeUppercase){strParams += `UPPERCASE, `;}
     if(includeNumbers){strParams += `numbers, `;}
-    if(includeSpecChar){strParams += "Special, ";}
+    if(includeSpecials){strParams += "specials, ";}
     // strParams += ` characters`;
 
     var confirmParams = confirm(`Confirm password parameters: \n${strParams}\n    Proceed  :=  OK\n    EXIT  :=  Cancel`)
-    console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof includeSpecChar}`);
+    console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof confirmParams}`);
 
     // Case: User clicks cancel to confirm parameters prompt --> Return to default browser
     if (confirmParams === false) {
@@ -113,7 +106,7 @@ function userPrompts() {
         includeLowercase: includeLowercase,
         includeUppercase: includeUppercase,
         includeNumbers: includeNumbers,
-        includeSpecials: includeSpecChar,
+        includeSpecials: includeSpecials,
     };
 
     return userSelection;
@@ -152,8 +145,14 @@ function generatePassword() {
     //     includeSpecials: true,
     // };
 
-    console.log(`userSelection: ${userSelection.passwordLength}`);
+    // console.log(`userSelection: ${userSelection.passwordLength}`);
 
+    // Case(s): Each exits the password generator and returns to the default browser
+    //      - User clicks cancel to confirm parameters prompt
+    //      - User clicks cancel during lengthPrompt()
+    if(userSelection === null){
+        return null;
+    }
 
 
     // Select one character from each included type and Append the array to a arrCombinedCharacters to randomly choose from later
