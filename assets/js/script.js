@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 
 
-/* ------------------------------------------------------------------- */
+/* --------------------BKN ADDED CODE----------------------------------------------- */
 
 // Global variables
 var arrNumbers = ['0','1','2','3','4','5','6','7','8','9'];
@@ -43,15 +43,14 @@ function lengthPrompt() {
 
 
 function userPrompts() {
-    // Important: need to re-evaluate what gets returned.
-    // Important: Add confirm if numbers are wanted
 
+    // Prompt for password length between 8 and 128 inclusive
     var numChar = lengthPrompt(); 
 
     // Case: User clicks cancel during lengthPrompt() --> 
-        // lengthPrompt() returns null --> 
-        // Confirm Exit Password Generator --> 
-        // User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
+    //      lengthPrompt() returns null --> 
+    //      Confirm Exit Password Generator --> 
+    //      User can either click 'OK' to exit password generator OR 'Cancel' to re-prompt the lengthPrompt()
     if (numChar === null){
         do {
             var confirmAbort = confirm("Exit Password Generator?");
@@ -65,6 +64,7 @@ function userPrompts() {
         while(numChar === null);
     }
 
+    // Prompt user to confirm types of characters to include
     var includeLowercase = confirm(`Include 'lowercase' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include lowercase: ${includeLowercase}  Type: ${typeof includeLowercase}`);
 
@@ -90,8 +90,6 @@ function userPrompts() {
     if(includeUppercase){strParams += `UPPERCASE, `;}
     if(includeNumbers){strParams += `numbers, `;}
     if(includeSpecials){strParams += "specials, ";}
-    // strParams += ` characters`;
-
     var confirmParams = confirm(`Confirm password parameters: \n${strParams}\n    Proceed  :=  OK\n    EXIT  :=  Cancel`)
     console.log(`Confirm Parameters: ${confirmParams}  Type: ${typeof confirmParams}`);
 
@@ -101,6 +99,7 @@ function userPrompts() {
         return null;
     }
 
+    // Add all the values here in case of loopbacks with lengthPrompt()
     var userSelection = {
         passwordLength: numChar,
         includeLowercase: includeLowercase,
@@ -110,7 +109,6 @@ function userPrompts() {
     };
 
     return userSelection;
-    // Important: need to re-evaluate what gets returned.
 }
 
 
@@ -120,7 +118,7 @@ function userPrompts() {
 // Source: (Stack Overflow - See post by Laurens Holst and edited by ashleedawg)
 // [How To Randomly Shuffle a JavaScript Array - Durstenfeld Shuffle](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
 // -- AND -- 
-// To Bootcamp Graders/Instructors: Yes, I do understand this algorithm, I have a Bachelors in Mathematics and Electrial Engineering
+// To Bootcamp Graders/Instructors: Yes, I do understand this algorithm, I have bachelors degrees in Mathematics and Electrial Engineering :)
 function shuffle(array) {
     for(var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -137,23 +135,12 @@ function generatePassword() {
 
     var userSelection = userPrompts();
 
-    // var userSelection = {
-    //     passwordLength: 20,
-    //     includeLowercase: true,
-    //     includeUppercase: true,
-    //     includeNumbers: true,
-    //     includeSpecials: true,
-    // };
-
-    // console.log(`userSelection: ${userSelection.passwordLength}`);
-
     // Case(s): Each exits the password generator and returns to the default browser
     //      - User clicks cancel to confirm parameters prompt
     //      - User clicks cancel during lengthPrompt()
     if(userSelection === null){
         return null;
     }
-
 
     // Select one character from each included type and Append the array to a arrCombinedCharacters to randomly choose from later
     var arrNewPassword = [];
