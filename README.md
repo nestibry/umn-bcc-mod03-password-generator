@@ -26,11 +26,16 @@ N/A
 
 ## Usage
 
-Deployed Site: 
+Deployed Site: https://nestibry.github.io/umn-bcc-mod03-password-generator/
 
-![Example Image 1]()
+Figure: Default Screen
+![Default Screen](./assets/images/default-screen.png)
 
-![Example Image 2]()
+Figure: Prompt Example
+![Prompt Example](./assets/images/prompt-example.png)
+ 
+Figure: Generated Password Example with Console Log
+![Generated Password Example with Console Log](./assets/images/generated-password-example.png)
 
 
 
