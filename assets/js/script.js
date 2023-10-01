@@ -85,7 +85,7 @@ function userPrompts() {
 
     // Creating and Prompting User to Confirm Password Paramaters List
     var strParams = "";
-    strParams += `${numChar} characters \nIncludes Types:  `;
+    strParams += `${numChar} characters \nInclude:  `;
     if(includeLowercase){strParams += `lowercase, `;}
     if(includeUppercase){strParams += `UPPERCASE, `;}
     if(includeNumbers){strParams += `numbers, `;}
