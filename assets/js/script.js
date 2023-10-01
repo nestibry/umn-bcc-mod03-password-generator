@@ -71,11 +71,14 @@ function userPrompts() {
     var includeUppercase = confirm(`Include 'UPPERCASE' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include UPPERCASE: ${includeUppercase}  Type: ${typeof includeUppercase}`);
 
-    var includeSpecChar = confirm(`Include 'Special Characters' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
+    var includeNumbers = confirm(`Include 'UPPERCASE' characters? \n    Yes  :=  OK\n    No  :=  Cancel`);
+    console.log(`Include Numbers: ${includeNumbers}  Type: ${typeof includeNumbers}`);
+
+    var includeSpecChar = confirm(`Include 'Special' characters? \n( e.g., ! " # $ % & ' ) \n    Yes  :=  OK\n    No  :=  Cancel`);
     console.log(`Include Special Characters: ${includeSpecChar}  Type: ${typeof includeSpecChar}`);
 
     // Case: User clicks cancel for ALL character types --> Return to default browser
-    if(!includeLowercase && !includeUppercase && !includeSpecChar) {
+    if(!includeLowercase && !includeUppercase && !includeNumbers && !includeSpecChar) {
         // includeLowercase = includeUppercase = includeSpecChar = true;
         // console.log(`User selected not to include any character types. Defaulting to include ALL character types.
         // Include lowercase: ${includeLowercase}  Type: ${typeof includeLowercase}
@@ -90,8 +93,9 @@ function userPrompts() {
     // Creating and Prompting User to Confirm Password Paramaters List
     var strParams = "";
     strParams += `${numChar} characters --> Includes Types:  `;
-    if(includeLowercase){strParams += "lowercase, ";}
-    if(includeUppercase){strParams += "UPPERCASE, ";}
+    if(includeLowercase){strParams += `lowercase, `;}
+    if(includeUppercase){strParams += `UPPERCASE, `;}
+    if(includeNumbers){strParams += `numbers, `;}
     if(includeSpecChar){strParams += "Special, ";}
     // strParams += ` characters`;
 
@@ -104,9 +108,19 @@ function userPrompts() {
         return null;
     }
 
-    return numChar;
+    var userSelection = {
+        passwordLength: numChar,
+        includeLowercase: includeLowercase,
+        includeUppercase: includeUppercase,
+        includeNumbers: includeNumbers,
+        includeSpecials: includeSpecChar,
+    };
+
+    return userSelection;
     // Important: need to re-evaluate what gets returned.
 }
+
+
 
 
 // Randomize array using the Durstenfeld shuffle algorithm 
@@ -128,19 +142,15 @@ function shuffle(array) {
 
 function generatePassword() {
 
-    var includeLowercase = true;
-    var includeUppercase = true;
-    var includeSpecChar = true;
-    var includeNumbers = true;
-    var passwordLength = 20;
+    var userSelection = userPrompts();
 
-    var userSelection = {
-        passwordLength: 20,
-        includeLowercase: true,
-        includeUppercase: true,
-        includeNumbers: true,
-        includeSpecials: true,
-    };
+    // var userSelection = {
+    //     passwordLength: 20,
+    //     includeLowercase: true,
+    //     includeUppercase: true,
+    //     includeNumbers: true,
+    //     includeSpecials: true,
+    // };
 
     console.log(`userSelection: ${userSelection.passwordLength}`);
 
