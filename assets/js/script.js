@@ -6,10 +6,14 @@ var generateBtn = document.querySelector("#generate");
 /* ------------------------------------------------------------------- */
 
 // Global variables
-// var newPassword;
-// var passwordLength;
+var arrNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+var arrLowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var arrSpecial = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~'];
 
-
+var arrUppercase = [];
+for(var i = 0; i < arrLowercase.length; i++) {
+    arrUppercase[i] = arrLowercase[i].toUpperCase();
+}
 
 
 function lengthPrompt() {
@@ -45,6 +49,7 @@ function lengthPrompt() {
 
 function userPrompts() {
     // Important: need to re-evaluate what gets returned.
+    // Important: Add confirm if numbers are wanted
 
     var numChar = lengthPrompt(); 
 
@@ -109,11 +114,84 @@ function userPrompts() {
 }
 
 
+// Randomize array using the Durstenfeld shuffle algorithm 
+// Source: (Stack Overflow - See post by Laurens Holst and edited by ashleedawg)
+// [How To Randomly Shuffle a JavaScript Array - Durstenfeld Shuffle](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+// -- AND -- 
+// To Bootcamp Graders/Instructors: Yes, I do understand this algorithm, I have a Bachelors in Mathematics and Electrial Engineering
+function shuffle(array) {
+    for(var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+function generateRandomNumber(min, max) { 
+    
+    return Math.floor( Math.random() * (max - min + 1) + min);
+
+}
+
+
 
 function generatePassword() {
 
-    var newPassword = userPrompts();
-    // Important: Need to add in something later if the passwordLength is null that the generation process needs to be aborted
+    var includeLowercase = true;
+    var includeUppercase = true;
+    var includeSpecChar = true;
+    var includeNumbers = true;
+    var passwordLength = 20;
+
+
+    // Select one character from each included type and Append the array to a arrCombinedCharacters to randomly choose from later
+    var newPasswordArray = [];
+    var arrCombinedChars = [];
+    var i = 0;
+    var j = 0;
+    if(includeLowercase===true){
+        j = Math.floor(Math.random() * (arrLowercase.length)); // Choose a random index from lowercase array
+        newPasswordArray[i] = arrLowercase[j]; // Add the selected character from the lowercase array to the new password array
+        // console.log(`Index #${i}: ${newPasswordArray[i]}`);  // Log the value to the console for debugging
+        i++; // increase the index value
+        arrCombinedChars = arrCombinedChars.concat(arrLowercase);  // Append the lowercase characters to one combined character array
+    }
+
+    if(includeUppercase===true){
+        j = Math.floor(Math.random() * (arrUppercase.length));
+        newPasswordArray[i] = arrUppercase[j];
+        i++;
+        arrCombinedChars = arrCombinedChars.concat(arrUppercase);
+    }
+
+    if(includeNumbers===true){
+        j = Math.floor(Math.random() * (arrNumbers.length));
+        newPasswordArray[i] = arrNumbers[j];
+        i++;
+        arrCombinedChars = arrCombinedChars.concat(arrNumbers);
+    }
+
+    if(includeSpecChar===true){
+        j = Math.floor(Math.random() * (arrSpecial.length));
+        newPasswordArray[i] = arrSpecial[j];
+        i++;
+        arrCombinedChars = arrCombinedChars.concat(arrSpecial);
+    }
+
+    // Select remaining characters 
+    for(var k = i; k < passwordLength; k++) {
+        var j = Math.floor(Math.random() * (arrCombinedChars.length));
+        newPasswordArray[k] = arrCombinedChars[j];
+    }
+
+    // Shuffle it so the first ones included are jumbled
+    newPasswordArray = shuffle(newPasswordArray);
+    console.log(`newPasswordArray: \nLength: ${newPasswordArray.length}  \nType: ${typeof newPasswordArray} \nValues: ${newPasswordArray}`);
+    
+    // join each element into one string and have no separator
+    var newPassword = newPasswordArray.join("");
 
     return newPassword;
 }
