@@ -30,17 +30,12 @@ function lengthPrompt() {
     // Case: Check that the value is a number AND within range [8:128] -- Re-prompt user to enter password length
     numChar *= 1;   // converts to a number
     console.log(`Converted to: ${numChar}  type: ${typeof numChar}`);
-
     if(!numChar){
-        
         console.log("User did not enter a number. Re-prompting user to enter password length...")
         numChar = lengthPrompt();
-
-    } else if (numChar < 8 || numChar > 128) {
-        
+    } else if (numChar < 8 || numChar > 128) { 
         console.log("User did not enter a number between 8 and 128. Re-prompting user to enter password length...")
         numChar = lengthPrompt();
-
     }
 
     return numChar;
@@ -129,12 +124,6 @@ function shuffle(array) {
     return array;
 }
 
-function generateRandomNumber(min, max) { 
-    
-    return Math.floor( Math.random() * (max - min + 1) + min);
-
-}
-
 
 
 function generatePassword() {
@@ -145,53 +134,64 @@ function generatePassword() {
     var includeNumbers = true;
     var passwordLength = 20;
 
+    var userSelection = {
+        passwordLength: 20,
+        includeLowercase: true,
+        includeUppercase: true,
+        includeNumbers: true,
+        includeSpecials: true,
+    };
+
+    console.log(`userSelection: ${userSelection.passwordLength}`);
+
+
 
     // Select one character from each included type and Append the array to a arrCombinedCharacters to randomly choose from later
-    var newPasswordArray = [];
+    var arrNewPassword = [];
     var arrCombinedChars = [];
     var i = 0;
     var j = 0;
-    if(includeLowercase===true){
+    if(userSelection.includeLowercase === true){
         j = Math.floor(Math.random() * (arrLowercase.length)); // Choose a random index from lowercase array
-        newPasswordArray[i] = arrLowercase[j]; // Add the selected character from the lowercase array to the new password array
-        // console.log(`Index #${i}: ${newPasswordArray[i]}`);  // Log the value to the console for debugging
+        arrNewPassword[i] = arrLowercase[j]; // Add the selected character from the lowercase array to the new password array
+        // console.log(`Index #${i}: ${arrNewPassword[i]}`);  // Log the value to the console for debugging
         i++; // increase the index value
         arrCombinedChars = arrCombinedChars.concat(arrLowercase);  // Append the lowercase characters to one combined character array
     }
 
-    if(includeUppercase===true){
+    if(userSelection.includeUppercase === true){
         j = Math.floor(Math.random() * (arrUppercase.length));
-        newPasswordArray[i] = arrUppercase[j];
+        arrNewPassword[i] = arrUppercase[j];
         i++;
         arrCombinedChars = arrCombinedChars.concat(arrUppercase);
     }
 
-    if(includeNumbers===true){
+    if(userSelection.includeNumbers === true){
         j = Math.floor(Math.random() * (arrNumbers.length));
-        newPasswordArray[i] = arrNumbers[j];
+        arrNewPassword[i] = arrNumbers[j];
         i++;
         arrCombinedChars = arrCombinedChars.concat(arrNumbers);
     }
 
-    if(includeSpecChar===true){
+    if(userSelection.includeSpecials === true){
         j = Math.floor(Math.random() * (arrSpecial.length));
-        newPasswordArray[i] = arrSpecial[j];
+        arrNewPassword[i] = arrSpecial[j];
         i++;
         arrCombinedChars = arrCombinedChars.concat(arrSpecial);
     }
 
     // Select remaining characters 
-    for(var k = i; k < passwordLength; k++) {
+    for(var k = i; k < userSelection.passwordLength; k++) {
         var j = Math.floor(Math.random() * (arrCombinedChars.length));
-        newPasswordArray[k] = arrCombinedChars[j];
+        arrNewPassword[k] = arrCombinedChars[j];
     }
 
     // Shuffle it so the first ones included are jumbled
-    newPasswordArray = shuffle(newPasswordArray);
-    console.log(`newPasswordArray: \nLength: ${newPasswordArray.length}  \nType: ${typeof newPasswordArray} \nValues: ${newPasswordArray}`);
+    arrNewPassword = shuffle(arrNewPassword);
+    console.log(`arrNewPassword: \nLength: ${arrNewPassword.length}  \nType: ${typeof arrNewPassword} \nValues: ${arrNewPassword}`);
     
     // join each element into one string and have no separator
-    var newPassword = newPasswordArray.join("");
+    var newPassword = arrNewPassword.join("");
 
     return newPassword;
 }
