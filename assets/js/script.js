@@ -185,59 +185,131 @@ function generatePassword() {
     // console.log(`maxCount: ${maxCount}  Type: ${typeof maxCount}`);
 
 
+
+    //// FIRST ATTEMPT
+
+
+    // var includeLowercase = true;
+    // var includeUppercase = true;
+    // var includeSpecChar = true;
+    // var includeNumbers = true;
+    // var passwordLength = 10;
+    // var count = 10;
+
+    // var tempArrLowercase = arrLowercase.slice(0);
+    // var tempArrUppercase = arrUppercase.slice(0);
+    // var tempArrNumbers = arrNumbers.slice(0);
+    // var tempArrSpecial = arrSpecial.slice(0);
+
+    // // tempArrLowercase = shuffle(tempArrLowercase);
+    // // tempArrUppercase = shuffle(tempArrUppercase);
+    // // tempArrNumbers = shuffle(tempArrNumbers);
+    // // tempArrSpecial = shuffle(tempArrSpecial);
+
+    // var newPasswordArray = [];
+    // var index = 0;
+
+    // console.log(`Start Password Generation:`);
+
+    // for(var i = 0; i < passwordLength; ) {
+    //     if(includeLowercase===true && i < passwordLength){
+    //         var j = generateRandomNumber(0, tempArrLowercase.length);
+    //         newPasswordArray[i] = tempArrLowercase[j];
+    //         console.log(`lowercase: ${newPasswordArray[i]}`);
+    //         i++;
+    //     }
+    //     if(includeUppercase===true && i < passwordLength){
+    //         var j = generateRandomNumber(0, tempArrUppercase.length);
+    //         newPasswordArray[i] = tempArrUppercase[j];
+    //         console.log(`uppercase: ${newPasswordArray[i]}`);
+    //         i++;
+    //     }
+    //     if(includeNumbers===true && i < passwordLength){
+    //         var j = generateRandomNumber(0, tempArrNumbers.length);
+    //         newPasswordArray[i] = tempArrNumbers[j];
+    //         console.log(`number: ${newPasswordArray[i]}`);
+    //         i++;
+    //     }
+    //     if(includeSpecChar===true && i < passwordLength){
+    //         var j = generateRandomNumber(0, tempArrSpecial.length);
+    //         newPasswordArray[i] = tempArrSpecial[j];
+    //         console.log(`special: ${newPasswordArray[i]}`);
+    //         i++;
+    //     }
+    // }
+
+
+
     var includeLowercase = true;
     var includeUppercase = true;
     var includeSpecChar = true;
     var includeNumbers = true;
-    var passwordLength = 10;
-    var count = 10;
+    var passwordLength = 20;
 
-    var tempArrLowercase = arrLowercase.slice(0);
-    var tempArrUppercase = arrUppercase.slice(0);
-    var tempArrNumbers = arrNumbers.slice(0);
-    var tempArrSpecial = arrSpecial.slice(0);
 
-    // tempArrLowercase = shuffle(tempArrLowercase);
-    // tempArrUppercase = shuffle(tempArrUppercase);
-    // tempArrNumbers = shuffle(tempArrNumbers);
-    // tempArrSpecial = shuffle(tempArrSpecial);
-
+    // Select one character from each included type and Append the array to a arrCombinedCharacters to randomly choose from later
     var newPasswordArray = [];
-    var index = 0;
+    var arrCombinedChars = [];
+    var i = 0;
+    var j = 0;
+    if(includeLowercase===true){
+        // Choose a random index from lowercase array
+        j = Math.floor(Math.random() * (arrLowercase.length));
 
-    console.log(`Start Password Generation:`);
+        // Add the selected character from the lowercase array to the new password array
+        newPasswordArray[i] = arrLowercase[j];
 
-    for(var i = 0; i < passwordLength; ) {
-        if(includeLowercase===true && i < passwordLength){
-            var j = generateRandomNumber(0, tempArrLowercase.length);
-            newPasswordArray[i] = tempArrLowercase[j];
-            console.log(`lowercase: ${newPasswordArray[i]}`);
-            i++;
-        }
-        if(includeUppercase===true && i < passwordLength){
-            var j = generateRandomNumber(0, tempArrUppercase.length);
-            newPasswordArray[i] = tempArrUppercase[j];
-            console.log(`uppercase: ${newPasswordArray[i]}`);
-            i++;
-        }
-        if(includeNumbers===true && i < passwordLength){
-            var j = generateRandomNumber(0, tempArrNumbers.length);
-            newPasswordArray[i] = tempArrNumbers[j];
-            console.log(`number: ${newPasswordArray[i]}`);
-            i++;
-        }
-        if(includeSpecChar===true && i < passwordLength){
-            var j = generateRandomNumber(0, tempArrSpecial.length);
-            newPasswordArray[i] = tempArrSpecial[j];
-            console.log(`special: ${newPasswordArray[i]}`);
-            i++;
-        }
+        // Log the value to the console for debugging
+        // console.log(`Index #${i}: ${newPasswordArray[i]}`);
+
+        // increase the index value
+        i++;
+
+        // Append the lowercase characters to one combined character array
+        arrCombinedChars = arrCombinedChars.concat(arrLowercase);
     }
 
+    if(includeUppercase===true){
+        j = Math.floor(Math.random() * (arrUppercase.length));
+        newPasswordArray[i] = arrUppercase[j];
+        // console.log(`Index #${i}: ${newPasswordArray[i]}`);
+        i++;
+        arrCombinedChars = arrCombinedChars.concat(arrUppercase);
+    }
 
-    var tempStr = newPasswordArray.join("");
+    if(includeNumbers===true){
+        j = Math.floor(Math.random() * (arrNumbers.length));
+        newPasswordArray[i] = arrNumbers[j];
+        // console.log(`Index #${i}: ${newPasswordArray[i]}`);
+        i++;
+        arrCombinedChars = arrCombinedChars.concat(arrNumbers);
+    }
 
-    newPassword = tempStr;
+    if(includeSpecChar===true){
+        j = Math.floor(Math.random() * (arrSpecial.length));
+        newPasswordArray[i] = arrSpecial[j];
+        // console.log(`Index #${i}: ${newPasswordArray[i]}`);
+        i++;
+        arrCombinedChars = arrCombinedChars.concat(arrSpecial);
+    }
+
+    // Select remaining characters 
+    for(var k = i; k < passwordLength; k++) {
+        var j = Math.floor(Math.random() * (arrCombinedChars.length));
+        newPasswordArray[k] = arrCombinedChars[j];
+        // console.log(`Index #${k}: ${newPasswordArray[k]}`);
+    }
+
+    // console.log(`newPasswordArray: \nLength: ${newPasswordArray.length}  \nType: ${typeof newPasswordArray} \nValues: ${newPasswordArray}`);
+    // console.log(`Combined Characters: ${arrCombinedChars}  Type: ${typeof arrCombinedChars}`);
+
+
+    // Shuffle it so the first ones included are jumbled
+    newPasswordArray = shuffle(newPasswordArray);
+    console.log(`newPasswordArray: \nLength: ${newPasswordArray.length}  \nType: ${typeof newPasswordArray} \nValues: ${newPasswordArray}`);
+    
+    // join each element into one string and have no separator
+    var newPassword = newPasswordArray.join("");
 
     return newPassword;
 }
